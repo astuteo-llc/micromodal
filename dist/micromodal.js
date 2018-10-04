@@ -342,7 +342,9 @@ var MicroModal = function () {
    * @return {void}
    */
   var close = function close() {
-    activeModal.closeModal();
+    if (activeModal) {
+      activeModal.closeModal();
+    }
   };
 
   return { init: init, show: show, close: close };

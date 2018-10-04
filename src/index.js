@@ -276,7 +276,9 @@ const MicroModal = (() => {
    * @return {void}
    */
   const close = () => {
-    activeModal.closeModal()
+    if (activeModal) {
+      activeModal.closeModal()
+    }
   }
 
   return { init, show, close }
