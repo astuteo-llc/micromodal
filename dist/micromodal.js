@@ -98,34 +98,34 @@ var MicroModal = function () {
         }
 
         triggers.forEach(function (trigger) {
-          trigger.addEventListener('click', function () {
-            return _this.showModal();
+          trigger.addEventListener('click', function (event) {
+            return _this.showModal(event);
           });
         });
       }
     }, {
       key: 'showModal',
-      value: function showModal() {
+      value: function showModal(event) {
         this.activeElement = document.activeElement;
         this.modal.setAttribute('aria-hidden', 'false');
         this.modal.classList.add('is-open');
         this.setFocusToFirstNode();
         this.scrollBehaviour('disable');
         this.addEventListeners();
-        this.config.onShow(this.modal);
+        this.config.onShow(this.modal, event);
 
         // stores reference to active modal
         activeModal = this;
       }
     }, {
       key: 'closeModal',
-      value: function closeModal() {
+      value: function closeModal(event) {
         var modal = this.modal;
         this.modal.setAttribute('aria-hidden', 'true');
         this.removeEventListeners();
         this.scrollBehaviour('enable');
         this.activeElement.focus();
-        this.config.onClose(this.modal);
+        this.config.onClose(this.modal, event);
 
         if (this.config.awaitCloseAnimation) {
           this.modal.addEventListener('animationend', function handler() {
@@ -169,7 +169,7 @@ var MicroModal = function () {
       key: 'onClick',
       value: function onClick(event) {
         if (event.target.hasAttribute(this.config.closeTrigger)) {
-          this.closeModal();
+          this.closeModal(event);
           event.preventDefault();
         }
       }
