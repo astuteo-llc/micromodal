@@ -63,7 +63,7 @@ const MicroModal = (() => {
       this.scrollBehaviour('disable')
       this.addEventListeners()
       this.config.onShow(this.modal, event)
-      
+
       // stores reference to active modal
       activeModal = this
     }
@@ -236,8 +236,10 @@ const MicroModal = (() => {
     // Create an config object with default openTrigger
     const options = Object.assign({}, { openTrigger: 'data-micromodal-trigger' }, config)
 
-    // Collects all the nodes with the trigger
-    const triggers = [...document.querySelectorAll(`[${options.openTrigger}]`)]
+    // Collects a single element if specified or all the nodes with the trigger
+    const triggers = (options.element)
+      ? [options.element]
+      : [...document.querySelectorAll(`[${options.openTrigger}]`)]
 
     // Makes a mappings of modals with their trigger nodes
     const triggerMap = generateTriggerMap(triggers, options.openTrigger)

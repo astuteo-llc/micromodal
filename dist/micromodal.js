@@ -302,8 +302,8 @@ var MicroModal = function () {
     // Create an config object with default openTrigger
     var options = Object.assign({}, { openTrigger: 'data-micromodal-trigger' }, config);
 
-    // Collects all the nodes with the trigger
-    var triggers = [].concat(toConsumableArray(document.querySelectorAll('[' + options.openTrigger + ']')));
+    // Collects a single element if specified or all the nodes with the trigger
+    var triggers = options.element ? [options.element] : [].concat(toConsumableArray(document.querySelectorAll('[' + options.openTrigger + ']')));
 
     // Makes a mappings of modals with their trigger nodes
     var triggerMap = generateTriggerMap(triggers, options.openTrigger);
