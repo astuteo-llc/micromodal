@@ -4,7 +4,7 @@
 	(global.MicroModal = factory());
 }(this, (function () { 'use strict';
 
-var version = "0.3.1";
+var version = "0.3.2";
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -113,6 +113,9 @@ var MicroModal = function () {
         this.scrollBehaviour('disable');
         this.addEventListeners();
         this.config.onShow(this.modal);
+
+        // stores reference to active modal
+        activeModal = this;
       }
     }, {
       key: 'closeModal',
@@ -330,9 +333,8 @@ var MicroModal = function () {
     // Checks if modals and triggers exist in dom
     if (options.debugMode === true && validateModalPresence(targetModal) === false) return;
 
-    // stores reference to active modal
-    activeModal = new Modal(options); // eslint-disable-line no-new
-    activeModal.showModal();
+    var modal = new Modal(options); // eslint-disable-line no-new
+    modal.showModal();
   };
 
   /**

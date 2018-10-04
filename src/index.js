@@ -63,6 +63,9 @@ const MicroModal = (() => {
       this.scrollBehaviour('disable')
       this.addEventListeners()
       this.config.onShow(this.modal)
+      
+      // stores reference to active modal
+      activeModal = this
     }
 
     closeModal () {
@@ -264,9 +267,8 @@ const MicroModal = (() => {
     // Checks if modals and triggers exist in dom
     if (options.debugMode === true && validateModalPresence(targetModal) === false) return
 
-    // stores reference to active modal
-    activeModal = new Modal(options) // eslint-disable-line no-new
-    activeModal.showModal()
+    const modal = new Modal(options) // eslint-disable-line no-new
+    modal.showModal()
   }
 
   /**
