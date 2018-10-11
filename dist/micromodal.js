@@ -243,8 +243,10 @@ var MicroModal = function () {
 
     triggers.forEach(function (trigger) {
       var targetModal = trigger.attributes[triggerAttr].value;
-      if (triggerMap[targetModal] === undefined) triggerMap[targetModal] = [];
-      triggerMap[targetModal].push(trigger);
+      if (document.getElementById(targetModal)) {
+        if (triggerMap[targetModal] === undefined) triggerMap[targetModal] = [];
+        triggerMap[targetModal].push(trigger);
+      }
     });
 
     return triggerMap;
